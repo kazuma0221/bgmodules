@@ -24,9 +24,11 @@ class Color(str, Enum):
         '''列挙したEnum値の、実際の値の一覧をリストで返す。'''
         return [c.value for c in Color._member_map_.values()]
 
+# テスト
 if __name__ == '__main__':
     # Enumオブジェクトの文字列表現と、オブジェクト自体のペアを列挙
-    # キーは実際の値ではなく、左辺がstrになって返されている
+    # タプルの左側は実際の値ではなく、左辺の変数名がstrになって返されている
+    print(Color.BLACK.casefold())
     for c in Color._member_map_.items():
         print(c)
     # 文字列表現のみ
