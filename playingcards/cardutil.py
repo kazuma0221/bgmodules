@@ -3,7 +3,7 @@ from playingcards.suit import Suit
 from playingcards.rank import Rank
 
 def makeCard(name:str)->Card:
-    '''渡した2文字に該当するCardのリストを返す。1文字目はスート、2文字目はランク。
+    '''渡した2文字に該当するCardを返す。1文字目はスート、2文字目はランク。
     スートはSHDCJ、ランクはAKQJT98765432（Tは10）。ジョーカーのランクは強い方がA、弱い方が2。
     一方または両方が小文字でも可。'''
     # 文字数チェック

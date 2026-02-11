@@ -4,7 +4,7 @@ from playingcards.suit import Suit
 from playingcards.card import Card
 
 class Deck():
-    '''カードゲームの山札を表すクラス。指定したランク・スートに基づく山札を生成し、各種操作を行う。'''
+    '''トランプゲームのデッキ（山札）を表すクラス。指定したランク・スートに基づく山札を生成し、各種操作を行う。'''
     deck = []
 
     def __init__(self):
