@@ -5,11 +5,12 @@ from boardgame.player import Player
 @dataclass
 class Table:
     '''ゲーム卓。ゲームに必要なデータを保持する。
-    :param Rules rules: ゲームのルール。
-    :param list[Players] players: ゲームのプレイヤーのlist。
-    :param list pieces: ゲームの内容物のlist。型は何でもよく、Pieceクラスに限らない。
-    :param dict inputData: PRからAPに入力するデータの辞書。作成時は空でもよい。
-    :param dict event: APからPRに出力するデータの辞書。作成時は空にすることを推奨する。'''
+    Args:
+        rules (Rules): ゲームのルール。
+        players (list[Player]): ゲームのプレイヤーのlist。
+        pieces (list): ゲームの内容物のlist。型は何でもよく、Pieceクラスに限らない。
+        inputData (dict): PRからAPに入力するデータの辞書。作成時は空でもよい。
+        event (dict): APからPRに出力するデータの辞書。作成時は空にすることを推奨する。'''
     rules: Rules
     players: list[Player]
     pieces: list

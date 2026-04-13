@@ -17,14 +17,17 @@ class Player():
         self.rng = np.random.default_rng()
 
     def chooseOne(self, choices):
-        '''引数で渡されたイテラブルから1つを選択して返す。'''
+        '''引数でイテラブルを渡すと、1つをランダムに選択して返す。'''
         return self.rng.choice(choices)
 
-def makePlayers(types:list[PlayerType], names:list[str]):
+def makePlayers(types:list[PlayerType], names:list[str])->list[Player]:
     '''プレイヤータイプ、名前、手札のリストからPlayerオブジェクトのリストを作って返すユーティリティ関数。
     引数で受け取ったリストをzip()で展開するので、各リストの長さは同じであるのが望ましい。
-    :param list types: プレイヤータイプのリスト。
-    :param list names: 名前のリスト。'''
+    Args:
+        types (list[PlayerType]): プレイヤータイプのリスト。
+        names (list[str]): 名前のリスト。
+    Returns:
+        list[Player]: プレイヤーのリスト。'''
     return [Player(ptype=ptype, pname=pname) for ptype, pname in zip(types, names)]
 
 # テスト
