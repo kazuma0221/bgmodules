@@ -1,10 +1,10 @@
 from cardgame.proc import Proc
-from cardgame.tttable import TTTable
-from cardgame.eventtype import EventType as ev
+from cardgame.trick_taking_table import TrickTakingTable
+from cardgame.event_type import EventType as ev
 
 class ProcTrickInit(Proc):
     '''トリックテイキングの、各トリック開始時の出力データ初期化処理。'''
-    def do(self, table:TTTable):
+    def do(self, table:TrickTakingTable):
         '''テーブルのプレイカードと表示用のeventをトリック前の状態にする。'''
         del table.playedCards[:]
         table.event['EVENT_TYPE'] = ev.BEGIN_TRICK
@@ -16,11 +16,11 @@ class ProcTrickInit(Proc):
         table.event['TRICK_WINNER'] = -1
 
 if __name__ == '__main__':
-    from cardgame.procdeal import ProcDeal
-    from cardgame import inputData
+    from cardgame.proc_deal import ProcDeal
+    from cardgame import input_data
 
     # ディールとトリック前処理を行い、データを確認
-    table = TTTable(inputData=inputData.makeTestData())
+    table = TrickTakingTable(inputData=input_data.makeTestData())
     ProcDeal().do(table)
     ProcTrickInit().do(table)
     for item in table.event.items():

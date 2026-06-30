@@ -1,6 +1,6 @@
 from cardgame.proc import Proc
 from cardgame.table import Table
-from cardgame.eventtype import EventType as ev
+from cardgame.event_type import EventType as ev
 
 class ProcCompPlay(Proc):
     '''コンピュータプレイ処理の実装。'''
@@ -18,23 +18,23 @@ class ProcCompPlay(Proc):
 
 # テスト
 if __name__ == '__main__':
-    from cardgame import inputData
-    from cardgame.playertype import PlayerType
-    from cardgame.ttrules import TTRules
+    from cardgame import input_data
+    from cardgame.player_type import PlayerType
+    from cardgame.trick_taking_rules import TrickTakingRules
 
     # 入力データとゲームテーブルを作成
-    data = inputData.inputData
-    inputData.setNames(['A', 'B', 'C', 'D'])
-    inputData.setTypes([PlayerType.AI_RANDOM, PlayerType.AI_RANDOM, PlayerType.AI_RANDOM, PlayerType.AI_RANDOM])
-    table = Table(inputData=data, rules=TTRules())
+    data = input_data.inputData
+    input_data.setNames(['A', 'B', 'C', 'D'])
+    input_data.setTypes([PlayerType.AI_RANDOM, PlayerType.AI_RANDOM, PlayerType.AI_RANDOM, PlayerType.AI_RANDOM])
+    table = Table(inputData=data, rules=TrickTakingRules())
     
     # ディール
-    from cardgame.procdeal import ProcDeal
+    from cardgame.proc_deal import ProcDeal
     proc = ProcDeal()
     proc.do(table)
     
     # データ初期化処理
-    from cardgame.proctrickinit import ProcTrickInit
+    from cardgame.proc_tric_init import ProcTrickInit
     proc = ProcTrickInit()
     proc.do(table)
     

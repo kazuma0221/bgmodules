@@ -11,4 +11,4 @@ class Rules(ABC):
             table (any): ゲーム卓。
         Returns:
             bool: 着手可能であればTrueを、そうでなければFalseを返すように実装する。'''
-        pass
+        raise NotImplementedError

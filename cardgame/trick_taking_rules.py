@@ -1,7 +1,7 @@
 from playingcards.card import Card
 from cardgame.rules import Rules
 
-class TTRules(Rules):
+class TrickTakingRules(Rules):
     '''トリックテイキングのトリック勝敗を定義する。指定した切札カードのスートを用いて判定する。
     切札はセッターでカードを指定し、ノートランプはゲッターがNoneを返す。'''
     def __init__(self, handsize:int=0, trump:Card=None):
@@ -31,7 +31,7 @@ if __name__ == '__main__':
 
     # 山札、ルール、切札を作成
     deck = Deck().shuffle()
-    rulebook = TTRules()
+    rulebook = TrickTakingRules()
     rulebook.setTrump(deck.pick())
     print('---')
 

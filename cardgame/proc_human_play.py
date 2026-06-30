@@ -1,6 +1,6 @@
 from cardgame.proc import Proc
 from cardgame.table import Table
-from cardgame.eventtype import EventType as ev
+from cardgame.event_type import EventType as ev
 
 class ProcHumanPlay(Proc):
     '''人間プレイ処理の実装。'''
@@ -30,18 +30,18 @@ class ProcHumanPlay(Proc):
 
 # 簡単な結合テスト
 if __name__ == '__main__':
-    from cardgame import inputData
-    from cardgame.playertype import PlayerType as PType
-    from cardgame.procdeal import ProcDeal
-    from cardgame.proctrickinit import ProcTrickInit
-    from cardgame.proccompplay import ProcCompPlay
-    from cardgame.ttrules import TTRules
+    from cardgame import input_data
+    from cardgame.player_type import PlayerType as PType
+    from cardgame.proc_deal import ProcDeal
+    from cardgame.proc_tric_init import ProcTrickInit
+    from cardgame.proc_comp_play import ProcCompPlay
+    from cardgame.trick_taking_rules import TrickTakingRules
 
     # 入力データとゲームテーブルを作成
-    data = inputData.inputData
-    inputData.setNames(['A', 'B', 'C', 'D'])
-    inputData.setTypes([PType.AI_RANDOM, PType.AI_RANDOM, PType.AI_RANDOM, PType.AI_RANDOM])
-    table = Table(inputData=data, rules=TTRules())
+    data = input_data.inputData
+    input_data.setNames(['A', 'B', 'C', 'D'])
+    input_data.setTypes([PType.AI_RANDOM, PType.AI_RANDOM, PType.AI_RANDOM, PType.AI_RANDOM])
+    table = Table(inputData=data, rules=TrickTakingRules())
 
     # ディール、トリック開始
     ProcDeal().do(table)

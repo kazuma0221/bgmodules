@@ -2,7 +2,7 @@ import copy
 from numpy import random
 
 from playingcards.card import Card
-from cardgame.playertype import PlayerType
+from cardgame.player_type import PlayerType
 
 def makePlayers(types:list[PlayerType], names:list[str], hands:list[list]=None):
     '''プレイヤータイプ、名前、手札のリストからPlayerオブジェクトのリストを作って返すユーティリティ関数。
@@ -106,8 +106,8 @@ class Player():
 # テスト用
 if __name__ == '__main__':
     from playingcards.deck import Deck
-    from cardgame.ttrules import TTRules
-    from cardgame import inputData
+    from cardgame.trick_taking_rules import TrickTakingRules
+    from cardgame import input_data
     from cardgame.table import Table
 
     # デッキとプレイヤーを用意
@@ -127,7 +127,7 @@ if __name__ == '__main__':
 
     # テーブルを用意し、カードをデッキから適当に2枚プレイ
     print('\n--- On the table:')
-    table = Table(inputData=inputData.makeTestData(), rules=TTRules(handsize=2))
+    table = Table(inputData=input_data.makeTestData(), rules=TrickTakingRules(handsize=2))
     table.playedCards = [deck.pick() for _ in range(2)]
     print([card.string() for card in table.playedCards])
 

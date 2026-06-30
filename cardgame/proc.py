@@ -6,4 +6,4 @@ class Proc(ABC):
     @abstractmethod
     def do(self):
         '''処理の実装。'''
-        pass
+        raise NotImplementedError

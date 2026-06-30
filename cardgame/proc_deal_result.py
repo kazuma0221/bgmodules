@@ -1,6 +1,6 @@
 from cardgame.proc import Proc
 from cardgame.table import Table
-from cardgame.eventtype import EventType as ev
+from cardgame.event_type import EventType as ev
 
 class ProcDealResult(Proc):
     '''ディール結果判定の実装。'''

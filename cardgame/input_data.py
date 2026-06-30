@@ -1,4 +1,4 @@
-from cardgame.playertype import PlayerType as T
+from cardgame.player_type import PlayerType as T
 
 inputData = {
     'player_names': [],

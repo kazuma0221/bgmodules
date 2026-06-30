@@ -1,7 +1,7 @@
 import random
 from cardgame.proc import Proc
 from cardgame.table import Table
-from cardgame.eventtype import EventType as ev
+from cardgame.event_type import EventType as ev
 
 class ProcDeal(Proc):
     '''ディール処理の実装。'''
@@ -43,9 +43,9 @@ class ProcDeal(Proc):
 # 単体テスト。4人戦で手札を配る
 if __name__ == '__main__':
     from cardgame.table import Table
-    from cardgame import inputData
+    from cardgame import input_data
     
-    table = Table(inputData=inputData.makeTestData())
+    table = Table(inputData=input_data.makeTestData())
     ProcDeal().do(table)
     for player in table.players:
         hand = ', '.join([card.string() for card in player.getHand()])

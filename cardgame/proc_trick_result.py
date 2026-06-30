@@ -1,10 +1,10 @@
 from cardgame.proc import Proc
-from cardgame.tttable import TTTable
-from cardgame.eventtype import EventType as ev
+from cardgame.trick_taking_table import TrickTakingTable
+from cardgame.event_type import EventType as ev
 
 class ProcTrickResult(Proc):
     '''トリック結果判定の実装。'''
-    def do(self, table:TTTable):
+    def do(self, table:TrickTakingTable):
         '''トリック結果を判定し、勝者を記録して次のリードに指定する。'''
         table.turn = (table.rules.whoWins(table.playedCards) + table.turn) % len(table.players)
         table.players[table.turn].pointPile.extend(table.playedCards)
@@ -14,17 +14,17 @@ class ProcTrickResult(Proc):
         table.event['EVENT_TYPE'] = ev.RESOLVE_TRICK
 
 if __name__ == '__main__':
-    from cardgame import inputData
-    from cardgame.playertype import PlayerType
-    from cardgame.procdeal import ProcDeal
-    from cardgame.proctrickinit import ProcTrickInit
-    from cardgame.proccompplay import ProcCompPlay
+    from cardgame import input_data
+    from cardgame.player_type import PlayerType
+    from cardgame.proc_deal import ProcDeal
+    from cardgame.proc_tric_init import ProcTrickInit
+    from cardgame.proc_comp_play import ProcCompPlay
 
     # 入力データとゲームテーブルを作成
-    data = inputData.inputData
-    inputData.setNames(['A', 'B', 'C', 'D'])
-    inputData.setTypes([PlayerType.AI_RANDOM, PlayerType.AI_RANDOM, PlayerType.AI_RANDOM, PlayerType.AI_RANDOM])
-    table = TTTable(inputData=data)
+    data = input_data.inputData
+    input_data.setNames(['A', 'B', 'C', 'D'])
+    input_data.setTypes([PlayerType.AI_RANDOM, PlayerType.AI_RANDOM, PlayerType.AI_RANDOM, PlayerType.AI_RANDOM])
+    table = TrickTakingTable(inputData=data)
     
     # ディール、トリック開始
     ProcDeal().do(table)

@@ -29,7 +29,7 @@ class Table():
 
 # 単体テスト
 if __name__ == '__main__':
-    from cardgame.playertype import PlayerType as Type
+    from cardgame.player_type import PlayerType as Type
     inputData = {'player_types': [Type.HUMAN, Type.AI_RANDOM],
               'player_names': ['You', 'CPU']}
     rules = Rules(handsize=10)

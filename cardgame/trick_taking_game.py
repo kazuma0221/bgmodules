@@ -1,20 +1,20 @@
-from cardgame.tttable import TTTable
-from cardgame.playertype import PlayerType
+from cardgame.trick_taking_table import TrickTakingTable
+from cardgame.player_type import PlayerType
 
 from cardgame.proc import Proc
-from cardgame.procdeal import ProcDeal
-from cardgame.proctrickinit import ProcTrickInit
-from cardgame.prochumanplay import ProcHumanPlay
-from cardgame.proccompplay import ProcCompPlay
-from cardgame.proctrickresult import ProcTrickResult
-from cardgame.procdealresult import ProcDealResult
+from cardgame.proc_deal import ProcDeal
+from cardgame.proc_tric_init import ProcTrickInit
+from cardgame.proc_human_play import ProcHumanPlay
+from cardgame.proc_comp_play import ProcCompPlay
+from cardgame.proc_trick_result import ProcTrickResult
+from cardgame.proc_deal_result import ProcDealResult
 
-class TTGame():
+class TrickTakingGame():
     '''トリックテイキングのゲーム論理手順。各手順を実行し、表示に必要な辞書データを返す。'''
     def __init__(self, inputData:dict):
         '''ゲーム卓を作成し、プロシージャ定義を行う。
         :param dict inputData: AP層用の入力データ。'''
-        self.table = TTTable(inputData=inputData)
+        self.table = TrickTakingTable(inputData=inputData)
         self.defineProc()
 
     def defineProc(self):
