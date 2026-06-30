@@ -34,7 +34,7 @@ if __name__ == '__main__':
     proc.do(table)
     
     # データ初期化処理
-    from cardgame.proc_tric_init import ProcTrickInit
+    from cardgame.proc_trick_init import ProcTrickInit
     proc = ProcTrickInit()
     proc.do(table)
     

@@ -3,7 +3,7 @@ from cardgame.player_type import PlayerType
 
 from cardgame.proc import Proc
 from cardgame.proc_deal import ProcDeal
-from cardgame.proc_tric_init import ProcTrickInit
+from cardgame.proc_trick_init import ProcTrickInit
 from cardgame.proc_human_play import ProcHumanPlay
 from cardgame.proc_comp_play import ProcCompPlay
 from cardgame.proc_trick_result import ProcTrickResult

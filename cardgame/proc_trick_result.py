@@ -17,7 +17,7 @@ if __name__ == '__main__':
     from cardgame import input_data
     from cardgame.player_type import PlayerType
     from cardgame.proc_deal import ProcDeal
-    from cardgame.proc_tric_init import ProcTrickInit
+    from cardgame.proc_trick_init import ProcTrickInit
     from cardgame.proc_comp_play import ProcCompPlay
 
     # 入力データとゲームテーブルを作成

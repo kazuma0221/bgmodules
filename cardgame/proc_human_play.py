@@ -33,7 +33,7 @@ if __name__ == '__main__':
     from cardgame import input_data
     from cardgame.player_type import PlayerType as PType
     from cardgame.proc_deal import ProcDeal
-    from cardgame.proc_tric_init import ProcTrickInit
+    from cardgame.proc_trick_init import ProcTrickInit
     from cardgame.proc_comp_play import ProcCompPlay
     from cardgame.trick_taking_rules import TrickTakingRules
 
