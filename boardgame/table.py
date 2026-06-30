@@ -9,12 +9,12 @@ class Table:
         rules (Rules): ゲームのルール。
         players (list[Player]): ゲームのプレイヤーのlist。
         pieces (list): ゲームの内容物のlist。型は何でもよく、Pieceクラスに限らない。
-        inputData (dict): PRからAPに入力するデータの辞書。作成時は空でもよい。
+        input_data (dict): PRからAPに入力するデータの辞書。作成時は空でもよい。
         event (dict): APからPRに出力するデータの辞書。作成時は空にすることを推奨する。'''
     rules: Rules
     players: list[Player]
     pieces: list
-    inputData: dict = field(default_factory=dict)
+    input_data: dict = field(default_factory=dict)
     event: dict = field(default_factory=dict)
 
 # テスト

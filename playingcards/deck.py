@@ -7,9 +7,9 @@ class Deck():
     '''トランプゲームのデッキ（山札）を表すクラス。指定したランク・スートに基づく山札を生成し、各種操作を行う。'''
     deck = []
 
-    def __init__(self):
+    def __init__(self, joker:bool=False):
         '''デッキを作成し、乱数ジェネレータを初期化する。'''
-        self.create()
+        self.create(joker)
         self.random_generator = random.default_rng()
 
     def create(self, joker:bool=False):

@@ -18,15 +18,14 @@ class ProcCompPlay(Proc):
 
 # テスト
 if __name__ == '__main__':
-    from cardgame import input_data
-    from cardgame.player_type import PlayerType
+    from cardgame.input_data import InputData
+    from cardgame.player_type import PlayerType as T
     from cardgame.trick_taking_rules import TrickTakingRules
 
     # 入力データとゲームテーブルを作成
-    data = input_data.inputData
-    input_data.setNames(['A', 'B', 'C', 'D'])
-    input_data.setTypes([PlayerType.AI_RANDOM, PlayerType.AI_RANDOM, PlayerType.AI_RANDOM, PlayerType.AI_RANDOM])
-    table = Table(inputData=data, rules=TrickTakingRules())
+    input_data = InputData(names=['A', 'B', 'C', 'D'],
+                           types=[T.AI_RANDOM, T.AI_RANDOM, T.AI_RANDOM, T.AI_RANDOM])
+    table = Table(input_data, rules=TrickTakingRules())
     
     # ディール
     from cardgame.proc_deal import ProcDeal

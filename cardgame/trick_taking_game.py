@@ -40,10 +40,10 @@ class TrickTakingGame():
         return (len(self.table.playedCards) == 0) \
                 and sum([len(player.getHand()) for player in self.table.players]) < 1
 
-    def next(self, inputData):
+    def next(self, input_data):
         '''ゲームのメイン処理。表示用イベントを返す。'''
         # 入力と初期値
-        self.table.inputData = inputData
+        self.table.input_data = input_data
         self.proc = None
         cardCnt = len(self.table.playedCards)
 
@@ -65,8 +65,8 @@ class TrickTakingGame():
         if self.isDealEnd():
             self.proc = self.procdic['dealresult']
         # クリアフラグがオンなら、トリックのリセット（次トリックの開始処理）
-        elif self.table.inputData['clear']:
-            self.table.inputData['clear'] = False
+        elif self.table.input_data['clear']:
+            self.table.input_data['clear'] = False
             self.proc = self.procdic['trickinit']
         # トリック未解決で全員が出したら、トリック解決
         elif cardCnt >= len(self.table.players):

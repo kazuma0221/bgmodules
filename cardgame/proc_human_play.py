@@ -10,38 +10,37 @@ class ProcHumanPlay(Proc):
         table.event['TURN_PLAYER'] = table.turn
 
         # カード未選択なら入力待ちとして終了
-        if table.inputData['choice'] is None:
+        if table.input_data['choice'] is None:
             table.event['EVENT_TYPE'] = ev.USER_TURN
             return
 
         # プレイ可否を判定し、不可なら入力待ちとして終了
         human = table.players[table.turn]
-        playOK = table.rules.isPlayable(table.playedCards, human.getHand(), table.inputData['choice'])
+        playOK = table.rules.isPlayable(table.playedCards, human.getHand(), table.input_data['choice'])
         table.event['IS_PLAYABLE'] = playOK
         if not playOK:
             table.event['EVENT_TYPE'] = ev.USER_TURN
             return
 
         # カードが選択済み、かつプレイ可能であれば実際にプレイ
-        table.playedCards.append(human.playCard(table.inputData['choice'])[1])
-        table.event['MY_CHOICE'] = table.inputData['choice']
+        table.playedCards.append(human.playCard(table.input_data['choice'])[1])
+        table.event['MY_CHOICE'] = table.input_data['choice']
         table.event['PLAYED_CARDS'] = table.playedCards
         table.event['EVENT_TYPE'] = ev.USER_APPROVED
 
 # 簡単な結合テスト
 if __name__ == '__main__':
-    from cardgame import input_data
-    from cardgame.player_type import PlayerType as PType
+    from cardgame.input_data import InputData
+    from cardgame.player_type import PlayerType as T
     from cardgame.proc_deal import ProcDeal
     from cardgame.proc_trick_init import ProcTrickInit
     from cardgame.proc_comp_play import ProcCompPlay
     from cardgame.trick_taking_rules import TrickTakingRules
 
     # 入力データとゲームテーブルを作成
-    data = input_data.inputData
-    input_data.setNames(['A', 'B', 'C', 'D'])
-    input_data.setTypes([PType.AI_RANDOM, PType.AI_RANDOM, PType.AI_RANDOM, PType.AI_RANDOM])
-    table = Table(inputData=data, rules=TrickTakingRules())
+    input_data = InputData(names=['A', 'B', 'C', 'D'],
+                           types=[T.AI_RANDOM, T.AI_RANDOM, T.AI_RANDOM, T.AI_RANDOM])
+    table = Table(input_data, rules=TrickTakingRules())
 
     # ディール、トリック開始
     ProcDeal().do(table)
@@ -61,7 +60,7 @@ if __name__ == '__main__':
     print(f'【手札】{", ".join(print_hand)}')
     proc = ProcHumanPlay()
     while True:
-        table.inputData['choice'] = int(input('プレイするカードを番号で選んでください > '))
+        table.input_data['choice'] = int(input('プレイするカードを番号で選んでください > '))
         proc.do(table)
         if table.event['EVENT_TYPE'] == ev.USER_TURN:
             print('そのカードは選べません')

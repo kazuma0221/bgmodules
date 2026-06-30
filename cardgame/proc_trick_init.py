@@ -17,10 +17,10 @@ class ProcTrickInit(Proc):
 
 if __name__ == '__main__':
     from cardgame.proc_deal import ProcDeal
-    from cardgame import input_data
+    from cardgame.input_data import makeTestData
 
     # ディールとトリック前処理を行い、データを確認
-    table = TrickTakingTable(inputData=input_data.makeTestData())
+    table = TrickTakingTable(makeTestData())
     ProcDeal().do(table)
     ProcTrickInit().do(table)
     for item in table.event.items():

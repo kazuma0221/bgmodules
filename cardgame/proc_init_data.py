@@ -10,9 +10,9 @@ class ProcInitData(Proc):
 if __name__ == '__main__':
     # 卓セットアップ
     from cardgame.trick_taking_table import TrickTakingTable
-    from cardgame import input_data
+    from cardgame.input_data import makeTestData
 
-    table = TrickTakingTable(inputData=input_data.makeTestData())
+    table = TrickTakingTable(makeTestData())
     ProcDeal().do(table)
     ProcInitData().do()
     for item in table.event.items():

@@ -127,7 +127,7 @@ if __name__ == '__main__':
 
     # テーブルを用意し、カードをデッキから適当に2枚プレイ
     print('\n--- On the table:')
-    table = Table(inputData=input_data.makeTestData(), rules=TrickTakingRules(handsize=2))
+    table = Table(input_data=input_data.makeTestData(), rules=TrickTakingRules(handsize=2))
     table.playedCards = [deck.pick() for _ in range(2)]
     print([card.string() for card in table.playedCards])
 

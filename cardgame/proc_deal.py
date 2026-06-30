@@ -32,7 +32,7 @@ class ProcDeal(Proc):
         table.event['DEALER'] = table.dealer
         table.event['OPENING_LEAD'] = table.turn
         table.event['TURN_PLAYER'] = table.turn
-        table.event['PLAYER_NAMES'] = table.inputData['player_names']
+        table.event['PLAYER_NAMES'] = table.input_data['player_names']
         table.event['WIN_COUNTS'] = [0] * len(table.players)
         table.event['SCORES'] = table.scores
         table.event['TOTAL_SCORES'] = table.totalScores
@@ -43,9 +43,9 @@ class ProcDeal(Proc):
 # 単体テスト。4人戦で手札を配る
 if __name__ == '__main__':
     from cardgame.table import Table
-    from cardgame import input_data
+    from cardgame.input_data import makeTestData
     
-    table = Table(inputData=input_data.makeTestData())
+    table = Table(input_data=makeTestData())
     ProcDeal().do(table)
     for player in table.players:
         hand = ', '.join([card.string() for card in player.getHand()])

@@ -6,15 +6,15 @@ from cardgame.player import Player, makePlayers
 
 class Table():
     '''ゲーム卓。ゲームに必要なデータを保持する。'''
-    def __init__(self, inputData:dict, rules:Rules=Rules(), deck:Deck=Deck()):
+    def __init__(self, input_data:dict, rules:Rules=Rules(), deck:Deck=Deck()):
         '''データを保持する変数を生成する。'''
         # 必須データ
         self.rules: Rules = rules
         self.deck: Deck = deck.shuffle()
         self.deck_backup = copy.deepcopy(self.deck)
-        self.inputData: dict = inputData
+        self.input_data: dict = input_data
         # 初期化
-        self.players: list[Player] = makePlayers(types=inputData['player_types'], names=inputData['player_names'])
+        self.players: list[Player] = makePlayers(types=input_data['player_types'], names=input_data['player_names'])
         self.event: dict = {}
         self.dealer: int = None
         self.turn: int = None
@@ -30,9 +30,9 @@ class Table():
 # 単体テスト
 if __name__ == '__main__':
     from cardgame.player_type import PlayerType as Type
-    inputData = {'player_types': [Type.HUMAN, Type.AI_RANDOM],
-              'player_names': ['You', 'CPU']}
+    input_data = {'player_types': [Type.HUMAN, Type.AI_RANDOM],
+                  'player_names': ['You', 'CPU']}
     rules = Rules(handsize=10)
-    table = Table(inputData=inputData, rules=rules)
+    table = Table(input_data, rules)
     for elem in table.__dict__.items():
         print(elem)

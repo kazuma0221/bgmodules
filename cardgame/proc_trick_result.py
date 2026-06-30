@@ -14,17 +14,16 @@ class ProcTrickResult(Proc):
         table.event['EVENT_TYPE'] = ev.RESOLVE_TRICK
 
 if __name__ == '__main__':
-    from cardgame import input_data
-    from cardgame.player_type import PlayerType
+    from cardgame.input_data import InputData
+    from cardgame.player_type import PlayerType as T
     from cardgame.proc_deal import ProcDeal
     from cardgame.proc_trick_init import ProcTrickInit
     from cardgame.proc_comp_play import ProcCompPlay
 
     # 入力データとゲームテーブルを作成
-    data = input_data.inputData
-    input_data.setNames(['A', 'B', 'C', 'D'])
-    input_data.setTypes([PlayerType.AI_RANDOM, PlayerType.AI_RANDOM, PlayerType.AI_RANDOM, PlayerType.AI_RANDOM])
-    table = TrickTakingTable(inputData=data)
+    input_data = InputData(names=['A', 'B', 'C', 'D'],
+                           types=[T.AI_RANDOM, T.AI_RANDOM, T.AI_RANDOM, T.AI_RANDOM])
+    table = TrickTakingTable(input_data)
     
     # ディール、トリック開始
     ProcDeal().do(table)
