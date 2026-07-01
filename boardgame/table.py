@@ -1,6 +1,7 @@
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from boardgame.rules import Rules
 from boardgame.player import Player
+from boardgame.dto import InputData
 
 @dataclass
 class Table:
@@ -9,13 +10,12 @@ class Table:
         rules (Rules): ゲームのルール。
         players (list[Player]): ゲームのプレイヤーのlist。
         pieces (list): ゲームの内容物のlist。型は何でもよく、Pieceクラスに限らない。
-        input_data (dict): PRからAPに入力するデータの辞書。作成時は空でもよい。
-        event (dict): APからPRに出力するデータの辞書。作成時は空にすることを推奨する。'''
+        input_data (InputData): PRからAPへの入力DTO。
+    '''
     rules: Rules
     players: list[Player]
     pieces: list
-    input_data: dict = field(default_factory=dict)
-    event: dict = field(default_factory=dict)
+    input_data: InputData
 
 # テスト
 if __name__ == '__main__':
@@ -35,7 +35,8 @@ if __name__ == '__main__':
 
     # 本題：テーブルを作り、内容を確認
     print('---------')
-    table = Table(rules=TestRules(), players=players, pieces=pieces)
+    from boardgame.event_type import EventType as ev
+    table = Table(rules=TestRules(), players=players, pieces=pieces, input_data=InputData())
     for elem in table.__dict__.items():
         print(elem)
     print('---------')

@@ -1,19 +1,17 @@
 from boardgame.proc import Proc
 from boardgame.table import Table
 from boardgame.event_type import EventType as ev
+from boardgame.dto import OutputEvent
 
 class ProcGameStart(Proc):
     '''ゲーム開始処理。個々のゲームに応じてオーバーライドする。'''
-    def do(self, table:Table) -> dict:
-        # 初期値設定
-        self.setEvent(table)
-        return table.event
+    def do(self, table:Table) -> OutputEvent:
+        return self.createEvent(table)
 
-    def setEvent(self, table:Table):
-        '''ゲーム卓の出力用辞書eventを作成する。'''
-        table.event = {}
-        table.event['EVENT_TYPE'] = ev.START_GAME
-        # table.event['VALUE'] = somevalue のように書く
+    def createEvent(self, table:Table) -> OutputEvent:
+        '''ゲーム卓の出力用DTOを作成して返す。'''
+        event = OutputEvent(event_type=ev.START_GAME)
+        return event
 
 if __name__ == '__main__':
     pass

@@ -3,6 +3,8 @@ from abc import abstractmethod
 from boardgame.rules import Rules
 from boardgame.player import Player
 from boardgame.table import Table
+from boardgame.dto import InputData, OutputEvent
+from boardgame.event_type import EventType as ev
 
 from boardgame.proc import Proc
 from boardgame.proc_game_start import ProcGameStart
@@ -13,23 +15,24 @@ class Game:
     個々のゲームに応じて、defineProc()、setProc()、isGameEnd()、または他を上書きする。
     defineProc()を上書きする代わりに、self.procdicに値を追加してもよい。'''
 
-    def __init__(self, input_data:dict, rules:Rules, players:list[Player], pieces:list):
+    def __init__(self, input_data:InputData, rules:Rules, players:list[Player], pieces:list):
         '''ゲーム卓を作成し、プロシージャ定義を行う。
         Args:
-            input_data (dict): 処理用の入力データ。
+            input_data (InputData): 処理用の入力データ。
             rules (Rules): ゲームのルール定義。
             players (list): プレイヤーのリスト。
             pieces (list): ゲームコンポーネントのリスト。
         '''
         self.input_data = input_data
-        self.table = Table(rules=rules, players=players, pieces=pieces)
+        self.table = Table(rules=rules, players=players, pieces=pieces,
+                           input_data=input_data, event=OutputEvent(event_type=ev.START_GAME))
         self.defineProc()
 
     def defineProc(self):
         '''プロシージャ定義。処理をオーバーライドしたら、ここの定義を上書きする。'''
         self.procdic: dict[str, Proc] = {
-            'startgame' : ProcGameStart(),
-            'endgame' : ProcGameEnd()
+            'game_start' : ProcGameStart(),
+            'game_end' : ProcGameEnd()
         }
 
     def start(self):
@@ -52,7 +55,7 @@ class Game:
         個々のゲームに合わせて、このメソッドを上書きする。'''
         # ゲーム終了処理を最初に判定する
         if self.isGameEnd():
-            self.proc = self.procdic['endgame']
+            self.proc = self.procdic['game_end']
         # 以降はゲームに合わせて上書き実装する
         pass
 
