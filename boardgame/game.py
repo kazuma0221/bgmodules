@@ -35,19 +35,25 @@ class Game:
             'game_end' : ProcGameEnd()
         }
 
-    def start(self):
-        '''ゲームの開始処理。最初に実行したいものをProcGameStartのサブクラスに入れておいて、ここで実行する。'''
-        self.proc = self.procdic['startgame']
-        return self.proc.do(self.table)
+    def start(self) -> OutputEvent:
+        '''ゲームの開始処理。最初に実行したいものをProcGameStartのサブクラスに入れておいて、ここで実行する。
+        Returns:
+            OutputEvent: 表示用のイベントDTO。
+        '''
+        self.proc = self.procdic['game_start']
+        self.event = self.proc.do(self.table)
+        return self.event
 
-    def next(self) -> dict:
+    def next(self) -> OutputEvent:
         '''ゲームのメイン処理。ゲーム状態に応じたプロシージャを実行し、表示用イベントを返す。
         Returns:
-            dict: 表示用のイベント辞書。'''
+            OutputEvent: 表示用のイベントDTO。
+        '''
         self.proc = None
         self.setProc()
-        if self.proc is not None:
-            return self.proc.do(self.table)
+        if self.proc:
+            self.event = self.proc.do(self.table)
+            return self.event
         return None
 
     def setProc(self):
