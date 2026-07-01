@@ -8,14 +8,19 @@ from boardgame.proc import Proc
 from boardgame.proc_game_start import ProcGameStart
 from boardgame.proc_game_end import ProcGameEnd
 
-class Game():
+class Game:
     '''ゲーム論理手順。各手順を実行し、表示に必要な辞書データを返す。
     個々のゲームに応じて、defineProc()、setProc()、isGameEnd()、または他を上書きする。
     defineProc()を上書きする代わりに、self.procdicに値を追加してもよい。'''
 
     def __init__(self, input_data:dict, rules:Rules, players:list[Player], pieces:list):
         '''ゲーム卓を作成し、プロシージャ定義を行う。
-        :param dict input_data: 処理用の入力データ。'''
+        Args:
+            input_data (dict): 処理用の入力データ。
+            rules (Rules): ゲームのルール定義。
+            players (list): プレイヤーのリスト。
+            pieces (list): ゲームコンポーネントのリスト。
+        '''
         self.input_data = input_data
         self.table = Table(rules=rules, players=players, pieces=pieces)
         self.defineProc()
@@ -32,8 +37,10 @@ class Game():
         self.proc = self.procdic['startgame']
         return self.proc.do(self.table)
 
-    def next(self)->dict:
-        '''ゲームのメイン処理。ゲーム状態に応じたプロシージャを実行し、表示用イベントを返す。'''
+    def next(self) -> dict:
+        '''ゲームのメイン処理。ゲーム状態に応じたプロシージャを実行し、表示用イベントを返す。
+        Returns:
+            dict: 表示用のイベント辞書。'''
         self.proc = None
         self.setProc()
         if self.proc is not None:
@@ -50,6 +57,6 @@ class Game():
         pass
 
     @abstractmethod
-    def isGameEnd(self)->bool:
+    def isGameEnd(self) -> bool:
         '''ゲームの終了判定処理。終了ならTrue、まだならFalseを返す。必ず上書きする。'''
-        pass
+        raise NotImplementedError
