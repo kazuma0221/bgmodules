@@ -26,19 +26,19 @@ class ProcDeal(Proc):
         self.setEvent(table)
 
     def setEvent(self, table:Table):
-        '''ゲーム卓の出力用辞書eventに値を設定する。'''
-        table.event = {}
-        table.event['EVENT_TYPE'] = ev.BEGIN_DEAL
-        table.event['DEALER'] = table.dealer
-        table.event['OPENING_LEAD'] = table.turn
-        table.event['TURN_PLAYER'] = table.turn
-        table.event['PLAYER_NAMES'] = table.input_data['player_names']
-        table.event['WIN_COUNTS'] = [0] * len(table.players)
-        table.event['SCORES'] = table.scores
-        table.event['TOTAL_SCORES'] = table.totalScores
-        table.event['HANDS'] = [p.getHand() for p in table.players]
-        table.event['PLAYED_CARDS'] = table.playedCards
-        table.event['IS_PLAYABLE'] = True
+        '''ゲーム卓の出力用辞書output_dataに値を設定する。'''
+        table.output_data = {}
+        table.output_data['EVENT_TYPE'] = ev.BEGIN_DEAL
+        table.output_data['DEALER'] = table.dealer
+        table.output_data['OPENING_LEAD'] = table.turn
+        table.output_data['TURN_PLAYER'] = table.turn
+        table.output_data['PLAYER_NAMES'] = table.input_data['player_names']
+        table.output_data['WIN_COUNTS'] = [0] * len(table.players)
+        table.output_data['SCORES'] = table.scores
+        table.output_data['TOTAL_SCORES'] = table.totalScores
+        table.output_data['HANDS'] = [p.getHand() for p in table.players]
+        table.output_data['PLAYED_CARDS'] = table.playedCards
+        table.output_data['IS_PLAYABLE'] = True
 
 # 単体テスト。4人戦で手札を配る
 if __name__ == '__main__':

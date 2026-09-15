@@ -11,10 +11,10 @@ class ProcCompPlay(Proc):
         table.playedCards.append(card[1])
 
         # イベント設定
-        table.event['MY_CHOICE'] = card[0]
-        table.event['TURN_PLAYER'] = table.turn
-        table.event['PLAYED_CARDS'] = table.playedCards
-        table.event['EVENT_TYPE'] = ev.OPPONENT_TURN
+        table.output_data['MY_CHOICE'] = card[0]
+        table.output_data['TURN_PLAYER'] = table.turn
+        table.output_data['PLAYED_CARDS'] = table.playedCards
+        table.output_data['EVENT_TYPE'] = ev.OPPONENT_TURN
 
 # テスト
 if __name__ == '__main__':

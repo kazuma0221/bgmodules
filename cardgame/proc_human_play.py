@@ -7,26 +7,26 @@ class ProcHumanPlay(Proc):
     def do(self, table:Table):
         '''入力値を判定し、選べるならそれを選ぶ。'''
         # 手番をセット
-        table.event['TURN_PLAYER'] = table.turn
+        table.output_data['TURN_PLAYER'] = table.turn
 
         # カード未選択なら入力待ちとして終了
         if table.input_data['choice'] is None:
-            table.event['EVENT_TYPE'] = ev.USER_TURN
+            table.output_data['EVENT_TYPE'] = ev.USER_TURN
             return
 
         # プレイ可否を判定し、不可なら入力待ちとして終了
         human = table.players[table.turn]
         playOK = table.rules.isPlayable(table.playedCards, human.getHand(), table.input_data['choice'])
-        table.event['IS_PLAYABLE'] = playOK
+        table.output_data['IS_PLAYABLE'] = playOK
         if not playOK:
-            table.event['EVENT_TYPE'] = ev.USER_TURN
+            table.output_data['EVENT_TYPE'] = ev.USER_TURN
             return
 
         # カードが選択済み、かつプレイ可能であれば実際にプレイ
         table.playedCards.append(human.playCard(table.input_data['choice'])[1])
-        table.event['MY_CHOICE'] = table.input_data['choice']
-        table.event['PLAYED_CARDS'] = table.playedCards
-        table.event['EVENT_TYPE'] = ev.USER_APPROVED
+        table.output_data['MY_CHOICE'] = table.input_data['choice']
+        table.output_data['PLAYED_CARDS'] = table.playedCards
+        table.output_data['EVENT_TYPE'] = ev.USER_APPROVED
 
 # 簡単な結合テスト
 if __name__ == '__main__':
@@ -62,8 +62,8 @@ if __name__ == '__main__':
     while True:
         table.input_data['choice'] = int(input('プレイするカードを番号で選んでください > '))
         proc.do(table)
-        if table.event['EVENT_TYPE'] == ev.USER_TURN:
+        if table.output_data['EVENT_TYPE'] == ev.USER_TURN:
             print('そのカードは選べません')
-        if table.event['EVENT_TYPE'] == ev.USER_APPROVED:
+        if table.output_data['EVENT_TYPE'] == ev.USER_APPROVED:
             break
     print('選んだカードは: ' + table.playedCards[-1].string())

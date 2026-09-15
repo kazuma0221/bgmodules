@@ -15,7 +15,7 @@ class Table():
         self.input_data: dict = input_data
         # 初期化
         self.players: list[Player] = makePlayers(types=input_data['player_types'], names=input_data['player_names'])
-        self.event: dict = {}
+        self.output_data: dict = {}
         self.dealer: int = None
         self.turn: int = None
         self.playedCards: list[Card] = []

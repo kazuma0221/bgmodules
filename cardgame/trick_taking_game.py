@@ -32,7 +32,7 @@ class TrickTakingGame():
         '''ディールの開始処理。'''
         self.proc = self.procdic['deal']
         self.proc.do(self.table)
-        return self.table.event
+        return self.table.output_data
 
     def isDealEnd(self):
         '''ディールの終了判定処理。場札も全員の手札もなくなったらディール終了。
@@ -41,7 +41,7 @@ class TrickTakingGame():
                 and sum([len(player.getHand()) for player in self.table.players]) < 1
 
     def next(self, input_data):
-        '''ゲームのメイン処理。表示用イベントを返す。'''
+        '''ゲームのメイン処理。表示用の出力DTOを返す。'''
         # 入力と初期値
         self.table.input_data = input_data
         self.proc = None
@@ -57,7 +57,7 @@ class TrickTakingGame():
         if len(self.table.playedCards) > cardCnt:
             self.table.turn = (self.table.turn + 1) % len(self.table.players)
         # イベントを返す
-        return self.table.event
+        return self.table.output_data
 
     def setProc(self, cardCnt):
         '''ゲーム状態に応じて実行すべきプロシージャオブジェクトを設定する。'''

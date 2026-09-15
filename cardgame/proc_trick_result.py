@@ -8,10 +8,10 @@ class ProcTrickResult(Proc):
         '''トリック結果を判定し、勝者を記録して次のリードに指定する。'''
         table.turn = (table.rules.whoWins(table.playedCards) + table.turn) % len(table.players)
         table.players[table.turn].pointPile.extend(table.playedCards)
-        table.event['PLAYED_CARDS'] = table.playedCards
-        table.event['TRICK_WINNER'] = table.turn
-        table.event['WIN_COUNTS'][table.turn] += 1
-        table.event['EVENT_TYPE'] = ev.RESOLVE_TRICK
+        table.output_data['PLAYED_CARDS'] = table.playedCards
+        table.output_data['TRICK_WINNER'] = table.turn
+        table.output_data['WIN_COUNTS'][table.turn] += 1
+        table.output_data['EVENT_TYPE'] = ev.RESOLVE_TRICK
 
 if __name__ == '__main__':
     from cardgame.input_data import InputData

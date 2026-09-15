@@ -15,5 +15,5 @@ if __name__ == '__main__':
     table = TrickTakingTable(makeTestData())
     ProcDeal().do(table)
     ProcInitData().do()
-    for item in table.event.items():
+    for item in table.output_data.items():
         print(item)
