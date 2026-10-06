@@ -16,7 +16,7 @@ class ProcHumanPlay(Proc):
 
         # プレイ可否を判定し、不可なら入力待ちとして終了
         human = table.players[table.turn]
-        playOK = table.rules.isPlayable(table.playedCards, human.getHand(), table.input_data['choice'])
+        playOK = table.rules.is_playable(table.playedCards, human.getHand(), table.input_data['choice'])
         table.output_data['IS_PLAYABLE'] = playOK
         if not playOK:
             table.output_data['EVENT_TYPE'] = ev.USER_TURN

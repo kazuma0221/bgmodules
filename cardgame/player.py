@@ -78,7 +78,7 @@ class Player():
     def copyPlayable(self, table):
         '''プレイ可能な手札のコピーを返す。'''
         copylist = copy.deepcopy(self.hand)
-        return [card for i, card in enumerate(copylist) if table.rules.isPlayable(table.playedCards, copylist, i)]
+        return [card for i, card in enumerate(copylist) if table.rules.is_playable(table.playedCards, copylist, i)]
 
     def playCard(self, c)->tuple[int, Card]:
         '''選んだカードを1枚プレイする。手札から抜いて(インデックス, カード)のタプルを返す。
@@ -100,7 +100,7 @@ class Player():
         '''ルールを参照し、プレイ可能なカードを手札からランダムに選び、そのカードを返す。
         デフォルトではトリックテイキングのルールに従って判定する。
         選び方を別途実装する場合、このメソッドを上書きする。'''
-        playable_list = [card for i, card in enumerate(self.hand) if table.rules.isPlayable(played=table.playedCards, hand=self.hand, choice=i)]
+        playable_list = [card for i, card in enumerate(self.hand) if table.rules.is_playable(played=table.playedCards, hand=self.hand, choice=i)]
         return self.rng.choice(playable_list)
 
 # テスト用

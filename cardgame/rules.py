@@ -22,7 +22,7 @@ class Rules:
         '''切札指定のカードを取得する。'''
         return self.trump
 
-    def isPlayable(self, played:list[Card], hand:list[Card], choice:int)->bool:
+    def is_playable(self, played:list[Card], hand:list[Card], choice:int)->bool:
         '''渡された場札、手札、選んだカードから、そのカードが出せるかどうかを判定する。
         このクラスの実装はトリックテイキングゲームのマストフォローで、ゲーム実装に応じてこのメソッドをオーバーライドする。
         :param list[Card] played: 場にプレイされているカード一覧。
@@ -52,5 +52,5 @@ if __name__ == '__main__':
     print('---')
     print('Your hand: ' + ', '.join([card.string() for card in hand]))
     for i, card in enumerate(hand):
-        print(f'{card.string()} is {"" if rules.isPlayable(hand, i) else "not "}playable.')
+        print(f'{card.string()} is {"" if rules.is_playable(hand, i) else "not "}playable.')
     print('---')

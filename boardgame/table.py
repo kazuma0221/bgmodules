@@ -30,7 +30,7 @@ if __name__ == '__main__':
     # ルールを適当に作成
     from boardgame.rules import Rules
     class TestRules(Rules):
-        def isPlayable(self, play, player, table):
+        def is_playable(self, play, player, table):
             return True
 
     # コマを適当に作成

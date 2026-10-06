@@ -41,7 +41,7 @@ if __name__ == '__main__':
     print(f'played: {", ".join([card.string() for card in played])}')
     print(f'hand: {", ".join([card.string() for card in hand])}')
     for i, card in enumerate(hand):
-        print(f'{card.string()} is {("" if rulebook.isPlayable(played, hand, i) else "not ")}playable.')
+        print(f'{card.string()} is {("" if rulebook.is_playable(played, hand, i) else "not ")}playable.')
     print('---')
 
     # 誰が勝つかの確認
