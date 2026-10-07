@@ -29,20 +29,20 @@ class BaseActionExecutor(ABC):
             bool: 実行可能であればTrue。
         '''
         action_type = play.get('action_type')
-        action = self._actions.get(action_type)
-        if action:
-            return action.is_playable(play, player, table)
-        return False
+        if not action_type or action_type not in self._actions:
+            return False
+        return self._actions[action_type].is_playable(play, player, table)
 
     def execute(self, play: dict, player: object, table: object):
-        '''指定されたアクションを実行する。
+        '''指定されたアクションを実行する。（未定義のアクションは辞書_actionsのKeyErrorになる。）
 
         Args:
             play (dict): アクションパラメータ。
             player (object): アクションを実行するプレイヤー。
             table (object): 現在のゲーム卓。
+
+        Returns:
+            任意。指定されたアクションの戻り値をそのまま返す。
         '''
         action_type = play.get('action_type')
-        action = self._actions.get(action_type)
-        if action:
-            action.execute(play, player, table)
+        return self._actions[action_type].execute(play, player, table)
