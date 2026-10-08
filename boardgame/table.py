@@ -5,7 +5,7 @@ from dataclasses import dataclass
 from boardgame.player import Player
 from boardgame.dto import InputData
 if TYPE_CHECKING:
-    from boardgame.rules import Rules
+    from boardgame.rules.rules import Rules
 
 @dataclass
 class Table:
@@ -28,7 +28,7 @@ if __name__ == '__main__':
     players = makePlayers(types=[PT.HUMAN, PT.AI_RANDOM], names=['You', 'CPU'])
 
     # ルールを適当に作成
-    from boardgame.rules import Rules
+    from boardgame.rules.rules import Rules
     class TestRules(Rules):
         def is_playable(self, play, player, table):
             return True
