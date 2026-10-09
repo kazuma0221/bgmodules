@@ -10,6 +10,7 @@ class WorkerSize(IntEnum):
 
 class Worker(Piece):
     '''ワーカーのクラス。色と大きさを持たせる。'''
-    def __init__(self, color:Color, size:WorkerSize=WorkerSize.SMALL):
+
+    def __init__(self, color: Color, size: WorkerSize = WorkerSize.SMALL):
         super().__init__(color)
         self.size = size
