@@ -1,7 +1,6 @@
 from abc import abstractmethod
 
 from boardgame.dto import InputData, OutputData
-
 from boardgame.proc import Proc
 from boardgame.proc_game_start import ProcGameStart
 from boardgame.proc_game_end import ProcGameEnd
@@ -11,7 +10,7 @@ class Game:
     個々のゲームに応じて、defineProc()、setProc()、isGameEnd()、または他を上書きする。
     defineProc()を上書きする代わりに、self.procdicに値を追加してもよい。'''
 
-    def __init__(self, input_data:InputData):
+    def __init__(self, input_data: InputData):
         '''ゲーム卓を作成し、プロシージャ定義を行う。
         Args:
             input_data (InputData): 処理用の入力データ。

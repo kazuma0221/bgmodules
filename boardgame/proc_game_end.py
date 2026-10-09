@@ -5,7 +5,7 @@ from boardgame.dto import OutputData
 
 class ProcGameEnd(Proc):
     '''ゲーム終了処理。個々のゲームに応じてオーバーライドする。'''
-    def do(self, table:Table) -> OutputData:
+    def do(self, table: Table) -> OutputData:
         output_data = OutputData(event_type=ev.GAME_RESULT)
         return output_data
 

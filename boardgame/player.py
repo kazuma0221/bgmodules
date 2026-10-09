@@ -38,9 +38,12 @@ class PlayerType(IntEnum):
 
 class Player:
     '''ボードゲームのプレイヤーを表すクラス。
-    ゲーム卓（Table）側でPlayerオブジェクトを作成するので、循環参照を避けるため
-    このファイルにTableクラスをimportしないこと。'''
-    def __init__(self, ptype:PlayerType=PlayerType.AI_RANDOM, pname:str=None):
+
+    ゲーム卓（Table）側でPlayerオブジェクトを作成するので、
+    Player側にTableクラスをimportしたいときは、TYPE_CHECKINGを使って循環参照を避けること。
+    '''
+
+    def __init__(self, ptype: PlayerType = PlayerType.AI_RANDOM, pname: str = None):
         '''プレイヤーのタイプと名前をセットし、乱数を初期化する。'''
         self.ptype: PlayerType = ptype
         self.pname: str = pname
@@ -52,7 +55,7 @@ class Player:
         '''引数でイテラブルを渡すと、1つをランダムに選択して返す。'''
         return self.rng.choice(choices)
 
-def makePlayers(types:list[PlayerType], names:list[str]) -> list[Player]:
+def makePlayers(types: list[PlayerType], names: list[str]) -> list[Player]:
     '''プレイヤータイプ、名前のリストからPlayerのリストを作る。
     引数のリストは長いほうの長さを採用し、不足分は適宜埋める。
 

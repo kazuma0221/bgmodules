@@ -5,18 +5,18 @@ from dataclasses import dataclass
 from boardgame.player import Player
 from boardgame.dto import InputData
 if TYPE_CHECKING:
-    from boardgame.rules.rules import Rules
+    from boardgame.rules.rules import BaseRules
 
 @dataclass
 class Table:
     '''ゲーム卓。ゲームに必要なデータを保持する。
     Args:
-        rules (Rules): ゲームのルール。
+        rules (BaseRules): ゲームのルール。
         players (list[Player]): ゲームのプレイヤーのlist。
         pieces (list): ゲームの内容物のlist。型は何でもよく、Pieceクラスに限らない。
         input_data (InputData): PRからAPへの入力DTO。
     '''
-    rules: Rules
+    rules: BaseRules
     players: list[Player]
     pieces: list
     input_data: InputData
@@ -28,10 +28,20 @@ if __name__ == '__main__':
     players = makePlayers(types=[PT.HUMAN, PT.AI_RANDOM], names=['You', 'CPU'])
 
     # ルールを適当に作成
-    from boardgame.rules.rules import Rules
-    class TestRules(Rules):
-        def is_playable(self, play, player, table):
-            return True
+    from boardgame.rules import BaseRules, BaseActionExecutor, BaseScoreCalculator, BaseTurnPostProcessor
+    class MockActionExecutor(BaseActionExecutor):
+        pass
+    class MockScoreCalculator(BaseScoreCalculator):
+        def calculate_score(self, player: object, table: object) -> int | float:
+            pass
+    class MockTurnPostProcessor(BaseTurnPostProcessor):
+        def process(self, table: object):
+            pass
+    class Rules(BaseRules):
+        def __init__(self):
+            self._executor = MockActionExecutor()
+            self._calculator = MockScoreCalculator()
+            self._turn_post_processor = MockTurnPostProcessor()
 
     # コマを適当に作成
     from bgpieces.color import Color
@@ -40,8 +50,7 @@ if __name__ == '__main__':
 
     # 本題：テーブルを作り、内容を確認
     print('---------')
-    from boardgame.event_type import EventType as ev
-    table = Table(rules=TestRules(), players=players, pieces=pieces, input_data=InputData())
+    table = Table(rules=Rules(), players=players, pieces=pieces, input_data=InputData())
     for elem in table.__dict__.items():
         print(elem)
     print('---------')
