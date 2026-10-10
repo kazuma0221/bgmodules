@@ -24,8 +24,8 @@ class Table:
 # テスト
 if __name__ == '__main__':
     # プレイヤーを作成
-    from boardgame.player import makePlayers, PlayerType as PT
-    players = makePlayers(types=[PT.HUMAN, PT.AI_RANDOM], names=['You', 'CPU'])
+    from boardgame.player import make_players, PlayerType as PT
+    players = make_players(types=[PT.HUMAN, PT.AI_RANDOM], names=['You', 'CPU'])
 
     # ルールを適当に作成
     from boardgame.rules import BaseRules, BaseActionExecutor, BaseScoreCalculator, BaseTurnPostProcessor

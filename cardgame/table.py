@@ -2,7 +2,7 @@ import copy
 from cardgame.rules import Rules
 from playingcards.card import Card
 from playingcards.deck import Deck
-from cardgame.player import Player, makePlayers
+from cardgame.player import Player, make_players
 
 class Table():
     '''ゲーム卓。ゲームに必要なデータを保持する。'''
@@ -14,7 +14,7 @@ class Table():
         self.deck_backup = copy.deepcopy(self.deck)
         self.input_data: dict = input_data
         # 初期化
-        self.players: list[Player] = makePlayers(types=input_data['player_types'], names=input_data['player_names'])
+        self.players: list[Player] = make_players(types=input_data['player_types'], names=input_data['player_names'])
         self.output_data: dict = {}
         self.dealer: int = None
         self.turn: int = None

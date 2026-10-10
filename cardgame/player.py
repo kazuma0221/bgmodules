@@ -4,7 +4,7 @@ from numpy import random
 from playingcards.card import Card
 from cardgame.player_type import PlayerType
 
-def makePlayers(types:list[PlayerType], names:list[str], hands:list[list]=None):
+def make_players(types:list[PlayerType], names:list[str], hands:list[list]=None):
     '''プレイヤータイプ、名前、手札のリストからPlayerオブジェクトのリストを作って返すユーティリティ関数。
     引数で受け取ったリストをzip()で展開するので、各リストの長さは同じであるのが望ましい。
     :param list types: プレイヤータイプのリスト。
