@@ -1,9 +1,7 @@
 from abc import abstractmethod
-
 from boardgame.dto import InputData, OutputData
-from boardgame.proc import Proc
-from boardgame.proc_start_game import ProcStartGame
-from boardgame.proc_end_game import ProcEndGame
+from boardgame.procs import *
+from boardgame.table import Table
 
 class Game:
     '''ゲーム論理手順。各手順を実行し、表示に必要な出力DTOを返す。
@@ -16,6 +14,7 @@ class Game:
             input_data (InputData): 処理用の入力データ。
         '''
         self.input_data = input_data
+        self.table: Table = None        # 実際のゲーム卓データはサブクラスで上書き作成してもらう
         self.define_proc()
 
     def define_proc(self):

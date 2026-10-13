@@ -1,0 +1,1 @@
+from boardgame.rules.actions.action import BaseAction

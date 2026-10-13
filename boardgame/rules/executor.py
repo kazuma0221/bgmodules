@@ -1,5 +1,5 @@
 from abc import ABC
-from boardgame.rules.actions.action import BaseAction
+from boardgame.rules.actions import BaseAction
 
 
 class BaseActionExecutor(ABC):
