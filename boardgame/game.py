@@ -2,8 +2,8 @@ from abc import abstractmethod
 
 from boardgame.dto import InputData, OutputData
 from boardgame.proc import Proc
-from boardgame.proc_game_start import ProcGameStart
-from boardgame.proc_game_end import ProcGameEnd
+from boardgame.proc_start_game import ProcStartGame
+from boardgame.proc_end_game import ProcEndGame
 
 class Game:
     '''ゲーム論理手順。各手順を実行し、表示に必要な出力DTOを返す。
@@ -21,16 +21,16 @@ class Game:
     def define_proc(self):
         '''プロシージャ定義。処理をオーバーライドしたら、ここの定義を上書きする。'''
         self.procdic: dict[str, Proc] = {
-            'game_start' : ProcGameStart(),
-            'game_end' : ProcGameEnd()
+            'start_game' : ProcStartGame(),
+            'end_game' : ProcEndGame()
         }
 
     def start(self) -> OutputData:
-        '''ゲームの開始処理。最初に実行したいものをProcGameStartのサブクラスに入れておいて、ここで実行する。
+        '''ゲームの開始処理。最初に実行したいものをProcStartGameのサブクラスに入れておいて、ここで実行する。
         Returns:
             OutputData: 表示用の出力DTO。
         '''
-        self.proc = self.procdic['game_start']
+        self.proc = self.procdic['start_game']
         self.output_data = self.proc.do(self.table)
         return self.output_data
 
@@ -51,7 +51,7 @@ class Game:
         個々のゲームに合わせて、このメソッドを上書きする。'''
         # ゲーム終了処理を最初に判定する
         if self.is_game_end():
-            self.proc = self.procdic['game_end']
+            self.proc = self.procdic['end_game']
         # 以降はゲームに合わせて上書き実装する
         pass
 

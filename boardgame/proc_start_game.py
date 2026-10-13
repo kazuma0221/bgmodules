@@ -3,7 +3,7 @@ from boardgame.table import Table
 from boardgame.event_type import EventType as ev
 from boardgame.dto import OutputData
 
-class ProcGameStart(Proc):
+class ProcStartGame(Proc):
     '''ゲーム開始処理。個々のゲームに応じてオーバーライドする。'''
     def do(self, table: Table) -> OutputData:
         return self.create_output_data(table)
